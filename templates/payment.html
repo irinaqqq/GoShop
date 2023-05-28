@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Payment Form</title>
+</head>
+<body>
+	<script src="https://js.stripe.com/v3/"></script>
+    <style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 20px;
+		}
+
+		h1 {
+			margin-bottom: 20px;
+			text-align: center;
+		}
+
+		form {
+			max-width: 400px;
+			margin: 0 auto;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		input[type="number"],
+		input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			margin-bottom: 10px;
+		}
+
+		#card-element {
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			padding: 10px;
+			margin-bottom: 10px;
+		}
+
+		button[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #45a049;
+		}
+
+		.error-message {
+			color: red;
+		}
+
+		.success-message {
+			color: green;
+		}
+	</style>
+	<h1>Payment Form</h1>
+
+	<form id="payment-form" >
+		<label for="cardholder-name">TOTAL</label>
+		<input type="text" id="amount" name="amount" disabled>
+		<label for="cardholder-name">Cardholder Name:</label>
+		<input type="text" id="cardholder-name" name="cardholder-name" required><br><br>
+		<label for="card-element">
+			Credit or debit card:
+		</label>
+		<div id="card-element">
+			<!-- Stripe card element will be inserted here. -->
+		</div><br><br>
+	
+		<button type="submit">Pay</button>
+	</form>
+
+	<script>
+		const stripe = Stripe("pk_test_51N98FUGPnEhDhfamjDxt1EkwVC0l0ZOEouysTIzl2s01tABQ0k5nIyXDKBPrEqWJkfDBGD25gERiRg80sqafCx3Z00AhS6oLJj"); // Replace with your Stripe publishable key
+		const elements = stripe.elements();
+		var amount =  localStorage.getItem("totalPrice")
+		document.querySelector("#amount").value =amount
+		const cardElement = elements.create('card');
+		cardElement.mount('#card-element');
+		var cartId =localStorage.getItem("cartId");
+		localStorage.removeItem('cartId');
+		localStorage.removeItem('totalPrice');
+		console.log(cartId)
+		const form = document.getElementById('payment-form');
+
+		form.addEventListener('submit', async (event) => {
+			event.preventDefault();
+
+			const { paymentMethod, error } = await stripe.createPaymentMethod({
+				type: 'card',
+				card: cardElement,
+				billing_details: {
+					name: document.getElementById('cardholder-name').value
+				}
+			});
+
+			if (error) {
+				console.log('Payment method error:', error);
+			} else {
+				const token = paymentMethod.id;
+				const cardholderName = document.getElementById('cardholder-name').value;
+
+				fetch('/stripe/payment', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ cartId,amount,token, cardholderName })
+				})
+				.then(response => response.json())
+				.then(response => {
+					if (response.status != 'succeeded') {
+						document.querySelector('#error-message').innerHTML = errorMessage;
+						
+					} else {
+						// Redirect to '/'
+						window.location.href = '/';
+					}
+					})
+				.catch(error => {
+					console.log('Payment error:', error);
+				});
+			}
+		});
+	
+	</script>
+		
+	
+</body>
+</html>

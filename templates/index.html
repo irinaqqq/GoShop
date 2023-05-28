@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinada Home</title>
+    <!-- fontawesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- bootstrap css -->
+    <link rel = "stylesheet" href = "../static/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="../static/css/welcome.css">
+</head>
+<body>
+    {{if .}}
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 fixed-top">
+		<div class="container">
+			<a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="/">
+				<img src="../static/img/shopping-bag-icon.png" alt="site icon">
+				<span class="text-uppercase fw-lighter ms-2">JINADA</span>
+			</a>
+	
+			<div class="order-lg-2 nav-btns">				
+				{{if .Username }}
+					<button type="button" class="btn position-relative" onclick="window.location.href='/profile'">
+						<span class="button-icon"><i class="fa fa-user"></i></span>
+						{{ .Username }}
+					  </button>
+                
+                        <button type="button" class="btn position-relative" onclick="clearLocalStorageAndRedirect()">
+                          <span class="button-icon"><i class="fa fa-sign-in-alt"></i></span>
+                          LogOut
+                        </button>
+              <script>
+                  function clearLocalStorageAndRedirect() {
+                              localStorage.clear();
+                              window.location.href = '/logout';
+                              }
+              </script>
+				{{else}}
+				<div class="order-lg-2 nav-btns">
+					<button type="button" class="btn position-relative" onclick="window.location.href='/signin'">
+					  <span class="button-icon"><i class="fa fa-user"></i></span>
+					  Sign In
+					</button>
+					<button type="button" class="btn position-relative" onclick="window.location.href='/signup'">
+					  <span class="button-icon"><i class="fa fa-sign-in-alt"></i></span>
+					  Sign Up
+					</button>
+					
+				  </div>
+				{{ end }}
+
+
+				
+				  
+				 
+				
+					
+					
+			</div>
+	
+			<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+	
+			<div class="collapse navbar-collapse order" id="navMenu">
+				<ul class="navbar-nav mx-auto text-center smaller-font ">
+					<li class="nav-item px-2 py-2">
+						<a class="nav-link text-uppercase text-dark" href="/">home</a>
+					</li>
+					<li class="nav-item px-2 py-2">
+						<a class="nav-link text-uppercase text-dark" href="/productList">products</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+    <!-- end of navbar -->
+
+    <!-- header -->
+    <header id = "header" class = "vh-100 carousel slide" data-bs-ride = "carousel" style = "padding-top: 104px;">
+        <div class = "container h-100 d-flex align-items-center carousel-inner">
+            <div class = "text-center carousel-item active">
+                <h2 class = "text-capitalize text-black">best collection</h2>
+                <h1 class = "text-uppercase py-2 fw-bold text-black">new arrivals</h1>
+                <a href = "/productList" class = "btn mt-3 text-uppercase">shop now</a>
+            </div>
+            
+        </div>
+
+      
+    </header>
+    <!-- end of header -->
+
+   
+
+    <!-- end of special products -->
+
+    <!-- blogs -->
+    <section id = "offers" class = "py-5">
+        <div class = "container">
+            <div class = "row d-flex align-items-center justify-content-center text-center justify-content-lg-start text-lg-start">
+                <div class = "offers-content">
+                    <span class = "text-white">Discount Up To 40%</span>
+                    <h2 class = "mt-2 mb-4 text-white">Grand Sale Offer!</h2>
+                    <a href = "/productList" class = "btn">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of about us -->
+    
+    <!-- footer -->
+    <footer class = "bg-dark py-5">
+        <div class = "container">
+            <div class = "row text-white g-3">
+                <div class = "col-md-6 col-lg-5">
+                    <a class = "text-uppercase text-decoration-none brand text-white" href = "index.html">JINADA</a>
+                    <p class = "text-white text-muted mt-3">At Jinada Clothes Shop, we are passionate about providing you with high-quality clothing that reflects your unique style and personality. Our mission is to offer a wide range of fashionable and trendy apparel for men, women, and children, ensuring that everyone can find something they love.</p>
+                </div>
+
+                <div class = "col-md-6 col-lg-3">
+                    <h5 class = "fw-light">Links</h5>
+                    <ul class = "list-unstyled">
+                        <li class = "my-3">
+                            <a href = "/" class = "text-white text-decoration-none text-muted">
+                                <i class = "fas fa-chevron-right me-1"></i> Home
+                            </a>
+                        </li>
+                        <li class = "my-3">
+                            <a href = "/productList" class = "text-white text-decoration-none text-muted">
+                                <i class = "fas fa-chevron-right me-1"></i> Collection
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class = "col-md-6 col-lg-3">
+                    <h5 class = "fw-light mb-3">Contact Us</h5>
+                    <div class = "d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class = "me-3">
+                            <i class = "fas fa-map-marked-alt"></i>
+                        </span>
+                        <span class = "fw-light">
+                            ZHAROKOVA 228, 21, ALMATY, KAZAKHSTAN
+                        </span>
+                    </div>
+                    <div class = "d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class = "me-3">
+                            <i class = "fas fa-envelope"></i>
+                        </span>
+                        <span class = "fw-light">
+                            jinada.support@gmail.com
+                        </span>
+                    </div>
+                    <div class = "d-flex justify-content-start align-items-start my-2 text-muted">
+                        <span class = "me-3">
+                            <i class = "fas fa-phone-alt"></i>
+                        </span>
+                        <span class = "fw-light">
+                            +777 777 77 77
+                        </span>
+                    </div>
+                </div>
+
+            
+            </div>
+        </div>
+    </footer>
+    <!-- end of footer -->
+
+    {{ end}}
+
+
+    <!-- jquery -->
+    <script src = "js/jquery-3.6.0.js"></script>
+    <!-- isotope js -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+    <!-- bootstrap js -->
+    <script src = "bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <!-- custom js -->
+    <script src = "js/script.js"></script>
+    <script>
+            // Get the username from user input or any other source
+            var username = "{{ .Username}}";
+            console.log(username)
+
+            // Save the username to local storage
+            localStorage.setItem("username", username);
+    </script>
+</body>
+</html>

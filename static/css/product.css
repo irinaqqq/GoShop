@@ -1,0 +1,25 @@
+.ratings-wrapper{
+	display: inline-block;
+	margin-bottom: 20px;
+ }
+ .ratings span{
+	cursor: pointer;
+	transition: color .2s;
+	font-size: 50px;
+ }
+ .ratings span:hover{
+	color: orange;
+ }
+ .ratings span:hover ~ span{
+	color: orange;
+ }
+ .ratings span[data-clicked]{
+	color: orange;
+ }
+ .ratings span[data-clicked] ~ span{
+	color: orange;
+ }
+ .ratings{
+	display: flex;
+	flex-direction: row-reverse;
+ }

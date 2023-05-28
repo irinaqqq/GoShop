@@ -1,0 +1,125 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: #333;
+	color: #fff;
+	padding: 20px;
+}
+
+nav ul {
+  
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+nav li:last-child {
+	margin-right: 0;
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+main {
+	padding: 20px;
+}
+
+.search-section {
+	margin-bottom: 20px;
+}
+
+.search-section input[type="text"], .search-section input[type="number"] {
+	padding: 10px;
+	margin-right: 10px;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 1px 1px 2px #ccc;
+}
+
+.search-section button[type="submit"] {
+	padding: 10px;
+	background-color: #333;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.filter-section {
+	margin-bottom: 20px;
+}
+
+.filter-section label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.filter-section input {
+	padding: 10px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 1px 1px 2px #ccc;
+}
+
+.filter-section button {
+	padding: 10px;
+	background-color: #333;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.cars-section{
+  width: 100%;
+}
+
+.cars-section ul {
+	list-style-type: none;
+	margin: 0;
+  width: 100%;
+}
+
+.cars-section li {
+	flex: 1;
+	margin: 10px;
+	padding: 10px;
+  width: 30%;
+	
+}
+.ratings-wrapper{
+	border: thin solid #999;
+	display: inline-block;
+	margin-bottom: 20px;
+ }
+ .ratings span{
+	cursor: pointer;
+	transition: color .2s;
+	font-size: 50px;
+ }
+ .ratings span:hover{
+	color: orange;
+ }
+ .ratings span:hover ~ span{
+	color: orange;
+ }
+ .ratings span[data-clicked]{
+	color: orange;
+ }
+ .ratings span[data-clicked] ~ span{
+	color: orange;
+ }
+ .ratings{
+	display: flex;
+	flex-direction: row-reverse;
+ }

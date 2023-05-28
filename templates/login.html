@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel = "stylesheet" href = "../static/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <!-- custom css -->
+    <link rel="stylesheet" type="text/css" href="../static/css/welcome.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Sign In</title>
+</head>
+<body>
+	   <!-- navbar -->
+	   <nav class="navbar navbar-expand-lg navbar-light bg-white py-4">
+		<div class="container">
+			<a class="navbar-brand d-flex justify-content-between align-items-center order-lg-0" href="/">
+				<img src="../static/img/shopping-bag-icon.png" alt="site icon">
+				<span class="text-uppercase fw-lighter ms-2">JINADA</span>
+			</a>
+	
+			<div class="order-lg-2 nav-btns">				
+				
+			
+						<button type="button" class="btn position-relative" onclick="window.location.href='/signin'">
+							<span class="button-icon"><i class="fa fa-user"></i></span>
+							Sign In
+						</button>
+						<button type="button" class="btn position-relative" onclick="window.location.href='/signup'">
+							<span class="button-icon"><i class="fa fa-sign-in-alt"></i></span>
+							Sign Up
+						</button>
+					
+			</div>
+	
+			<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+	
+			<div class="collapse navbar-collapse order" id="navMenu">
+				<ul class="navbar-nav mx-auto text-center smaller-font ">
+					<li class="nav-item px-2 py-2">
+						<a class="nav-link text-uppercase text-dark" href="/">home</a>
+					</li>
+					<li class="nav-item px-2 py-2">
+						<a class="nav-link text-uppercase text-dark" href="/productList">products</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+
+	
+
+
+		<div class="container mt-5">
+			<h1 class="text-center mb-4">Login</h1>
+			<p style="color:red">{{ . }}</p>
+			<form action="/signin" method="POST">
+				<div class="mb-3">
+					<label for="username" class="form-label">Username</label>
+					<input type="text" class="form-control" id="username" name="username" required>
+				</div>
+				<div class="mb-3">
+					<label for="password" class="form-label">Password</label>
+					<input type="password" class="form-control" id="password" name="password" required>
+				</div>
+				<button type="submit" class="btn btn-primary">Sign In</button>
+			</form>
+		</div>
+	
+		
+</body>
+</html>
+
